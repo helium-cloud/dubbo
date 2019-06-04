@@ -4,6 +4,7 @@
 
 dependencies {
     compile project(':dubbo-common')
+    compile project(':dubbo-remoting:dubbo-remoting-api')
     compile 'org.eclipse.jetty:jetty-server:9.4.11.v20180605'
     compile 'org.eclipse.jetty:jetty-servlet:9.4.11.v20180605'
     compile 'org.apache.tomcat.embed:tomcat-embed-core:8.5.31'

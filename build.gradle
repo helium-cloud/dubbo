@@ -14,7 +14,7 @@ buildscript {
                 credentials { username nexusUser; password nexusPass }
             }
         }
-
+        versionTail = new Date().format('yyMMddHHmm')
         repoClosure = {
             maven privateRepo()
             maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
@@ -35,7 +35,7 @@ allprojects { project ->
     project.repositories rootProject.repoClosure
 
     group = 'org.apache.dubbo'
-    version = dubbo_version
+    version = versionTail
 }
 
 def mavenPublishIgnoreList = ['dubbo-test', 'dubbo-demo']

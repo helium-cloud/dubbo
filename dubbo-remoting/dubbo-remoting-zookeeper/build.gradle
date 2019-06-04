@@ -3,7 +3,7 @@
  */
 
 dependencies {
-    compile project(':dubbo-common')
+    compile project(':dubbo-remoting:dubbo-remoting-api')
     compile 'org.apache.zookeeper:zookeeper:3.4.13'
     compile 'com.101tec:zkclient:0.2'
     compile group: 'org.apache.curator', name: 'curator-recipes', version: '4.2.0'

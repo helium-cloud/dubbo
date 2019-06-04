@@ -105,6 +105,9 @@ public class ZookeeperDynamicConfiguration implements DynamicConfiguration {
          */
         else {
             int i = key.lastIndexOf(".");
+            if (i < 0){
+                i = 0;
+            }
             key = key.substring(0, i) + "/" + key.substring(i + 1);
         }
 
