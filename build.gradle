@@ -1,0 +1,83 @@
+buildscript {
+    project.ext {
+        if (!project.hasProperty("nexusUser")) {
+            nexusUser = 'deployment'
+        }
+        if (!project.hasProperty("nexusPass")) {
+            nexusPass = 'deployment123'
+        }
+        nexusRoot = 'http://repo.feinno.com/nexus/content'
+        privateRepo = { return { url "${nexusRoot}/groups/public/" } }
+        uploadRepo = { project ->
+            return {
+                url "$nexusRoot/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}"
+                credentials { username nexusUser; password nexusPass }
+            }
+        }
+
+        repoClosure = {
+            maven privateRepo()
+            maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+            maven { url "http://repo.spring.io/milestone/" }
+            maven { url "https://repo.spring.io/snapshot/" }
+            maven { url "http://central.maven.org/maven2/" }
+            maven { url "https://repository.apache.org/snapshots" }
+            maven { url "http://repo.maven.apache.org/maven2" }
+            mavenCentral()
+            mavenLocal()
+        }
+    }
+    repositories repoClosure
+}
+
+allprojects { project ->
+
+    project.repositories rootProject.repoClosure
+
+    group = 'org.apache.dubbo'
+    version = dubbo_version
+}
+
+def mavenPublishIgnoreList = ['dubbo-test', 'dubbo-demo']
+
+subprojects { project ->
+
+    apply plugin: 'java'
+
+    apply plugin: 'maven-publish'
+
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = 1.8
+        options.encoding = "UTF-8"
+    }
+
+    tasks.withType(Test) {
+        defaultCharacterEncoding = "UTF-8"
+    }
+
+    dependencies {
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.4.0'
+        testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.23.4'
+        testCompile group: 'org.hamcrest', name: 'hamcrest-junit', version: '2.0.0.0'
+        testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.8.0-alpha2'
+    }
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.allJava
+        classifier = 'sources'
+    }
+
+    if (!(project.name in mavenPublishIgnoreList)) {
+        publishing {
+            repositories {
+                maven uploadRepo(project)
+            }
+            publications {
+                maven(MavenPublication) {
+                    from components.java
+                    artifact sourceJar
+                }
+            }
+        }
+    }
+}

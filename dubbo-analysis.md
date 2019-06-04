@@ -1,0 +1,107 @@
+#### dubbo-analysis
+    阅读及研究顺序:
+dubbo-common:通用组件模块
+dubbo-configcenter:配置中心
+    dubbo-configcenter-etcd
+    dubbo-configcenter-consul
+    dubbo-configcenter-apollo
+    dubbo-configcenter-api
+    dubbo-configcenter-zookeeper
+dubbo-cluster:
+dubbo-registry:注册中心
+    dubbo-registry-multicast
+    dubbo-registry-etcd3
+    dubbo-registry-nacos
+    dubbo-registry-redis
+    dubbo-registry-zookeeper
+    dubbo-registry-api
+    dubbo-registry-default
+    dubbo-registry-consul
+dubbo-compatible
+dubbo-dependencies-bom
+
+dubbo-filter
+    dubbo-filter-validation
+    dubbo-filter-cache
+
+dubbo-demo
+    dubbo-demo-annotation
+         dubbo-demo-annotation-consumer
+         dubbo-demo-annotation-provider
+    dubbo-demo-xml
+         dubbo-demo-xml-provider
+         dubbo-demo-xml-consumer
+    dubbo-demo-provider
+    dubbo-demo-interface
+    dubbo-demo-api
+         dubbo-demo-api-provider
+         dubbo-demo-api-consumer
+    dubbo-demo-consumer
+dubbo-rpc
+    dubbo-rpc-http
+    dubbo-rpc-helium
+    dubbo-rpc-rmi
+    dubbo-rpc-rest
+    dubbo-rpc-dubbo
+    dubbo-rpc-rsocket
+    dubbo-rpc-hessian
+    dubbo-rpc-api
+    dubbo-rpc-jsonrpc
+    dubbo-rpc-redis
+    dubbo-rpc-webservice
+    dubbo-rpc-memcached
+    dubbo-rpc-thrift
+    dubbo-rpc-injvm
+dubbo-test
+    dubbo-test-compatibility
+         dubbo-test-spring3
+    dubbo-test-integration
+dubbo-dependencies
+    dubbo-dependencies-zookeeper
+dubbo-distribution
+dubbo-remoting
+    dubbo-remoting-grizzly
+    dubbo-remoting-netty
+    dubbo-remoting-api
+    dubbo-remoting-netty4
+    dubbo-remoting-mina
+    dubbo-remoting-p2p
+    dubbo-remoting-etcd3
+    dubbo-remoting-zookeeper
+    dubbo-remoting-http
+dubbo-metadata-report
+    dubbo-metadata-report-consul
+    dubbo-metadata-report-api
+    dubbo-metadata-report-zookeeper
+    dubbo-metadata-report-redis
+    dubbo-metadata-definition
+
+dubbo-metrics
+    dubbo-metrics-api
+dubbo-bom
+dubbo-plugin
+    dubbo-qos
+dubbo-monitor
+    dubbo-monitor-api
+    dubbo-monitor-default
+dubbo
+dubbo-config
+    dubbo-config-api
+    dubbo-config-spring
+dubbo-serialization
+    dubbo-serialization-hessian2
+    dubbo-serialization-fst
+    dubbo-serialization-api
+    dubbo-serialization-avro
+    dubbo-serialization-fastjson
+    dubbo-serialization-protostuff
+    dubbo-serialization-jdk
+    dubbo-serialization-test
+    dubbo-serialization-kryo
+dubbo-all
+dubbo-container
+    dubbo-container-logback
+    dubbo-container-api
+    dubbo-container-spring
+    dubbo-container-log4j
+    
