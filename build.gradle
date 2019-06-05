@@ -35,7 +35,7 @@ allprojects { project ->
     project.repositories rootProject.repoClosure
 
     group = 'org.apache.dubbo'
-    version = versionTail
+    version = dubbo_version
 }
 
 def mavenPublishIgnoreList = ['dubbo-test', 'dubbo-demo']
