@@ -500,7 +500,7 @@ public class Demo {
                 return new echoBool_args();
             }
 
-            @Override
+
             protected boolean isOneway() {
                 return false;
             }
@@ -522,7 +522,7 @@ public class Demo {
                 return new echoByte_args();
             }
 
-            @Override
+
             protected boolean isOneway() {
                 return false;
             }
@@ -544,7 +544,7 @@ public class Demo {
                 return new echoI16_args();
             }
 
-            @Override
+
             protected boolean isOneway() {
                 return false;
             }
@@ -566,7 +566,7 @@ public class Demo {
                 return new echoI32_args();
             }
 
-            @Override
+
             protected boolean isOneway() {
                 return false;
             }
@@ -588,7 +588,7 @@ public class Demo {
                 return new echoI64_args();
             }
 
-            @Override
+
             protected boolean isOneway() {
                 return false;
             }
@@ -610,7 +610,6 @@ public class Demo {
                 return new echoDouble_args();
             }
 
-            @Override
             protected boolean isOneway() {
                 return false;
             }
@@ -632,7 +631,6 @@ public class Demo {
                 return new echoString_args();
             }
 
-            @Override
             protected boolean isOneway() {
                 return false;
             }

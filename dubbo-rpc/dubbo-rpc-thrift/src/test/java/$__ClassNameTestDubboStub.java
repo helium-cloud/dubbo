@@ -64,7 +64,6 @@ public class $__ClassNameTestDubboStub {
                 return new echo_args();
             }
 
-            @Override
             protected boolean isOneway() {
                 return false;
             }
