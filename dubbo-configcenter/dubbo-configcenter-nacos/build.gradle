@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':dubbo-configcenter:dubbo-configcenter-api')
+    compile group: 'com.alibaba.nacos', name: 'nacos-client', version: '1.0.0'
+
+}

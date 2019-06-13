@@ -59,7 +59,7 @@ public class ApolloDynamicConfiguration implements DynamicConfiguration {
     private static final String APOLLO_CLUSTER_KEY = "apollo.cluster";
     private static final String APOLLO_PROTOCOL_PREFIX = "http://";
     private static final String APOLLO_APPLICATION_KEY = "application";
-
+    private static final String APOLLO_APP_KEY = "app.id";
     private URL url;
     private Config dubboConfig;
     private ConfigFile dubboConfigFile;
@@ -71,6 +71,7 @@ public class ApolloDynamicConfiguration implements DynamicConfiguration {
         String configEnv = url.getParameter(APOLLO_ENV_KEY);
         String configAddr = getAddressWithProtocolPrefix(url);
         String configCluster = url.getParameter(CONFIG_CLUSTER_KEY);
+        String configAppId = url.getParameter(APOLLO_APP_KEY);
         if (configEnv != null) {
             System.setProperty(APOLLO_ENV_KEY, configEnv);
         }
@@ -79,6 +80,9 @@ public class ApolloDynamicConfiguration implements DynamicConfiguration {
         }
         if (configCluster != null) {
             System.setProperty(APOLLO_CLUSTER_KEY, configCluster);
+        }
+        if (configAppId != null) {
+            System.setProperty(APOLLO_APP_KEY, configAppId);
         }
 
         dubboConfig = ConfigService.getConfig(url.getParameter(CONFIG_NAMESPACE_KEY, DEFAULT_GROUP));
