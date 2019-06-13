@@ -59,7 +59,16 @@ public class ServiceBeanNameBuilder {
 
     private ServiceBeanNameBuilder(Service service, Class<?> interfaceClass, Environment environment) {
         this(resolveInterfaceName(service, interfaceClass), environment);
-        this.group(service.group());
+        if (StringUtils.isEmpty(service.group())){
+            //进行method和event处理
+            if (service.method() > 0 && service.event() > 0){
+                this.group(service.method() +"." + service.event());
+            } else {
+                this.group(service.group());
+            }
+        } else {
+            this.group(service.group());
+        }
         this.version(service.version());
     }
 
