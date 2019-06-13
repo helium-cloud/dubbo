@@ -62,7 +62,7 @@ public class ServiceBeanNameBuilder {
         if (StringUtils.isEmpty(service.group())){
             //进行method和event处理
             if (service.method() > 0 && service.event() > 0){
-                this.group(service.method() +"." + service.event());
+                this.group(service.method() + "." + service.event());
             } else {
                 this.group(service.group());
             }
@@ -74,7 +74,16 @@ public class ServiceBeanNameBuilder {
 
     private ServiceBeanNameBuilder(Reference reference, Class<?> interfaceClass, Environment environment) {
         this(resolveInterfaceName(reference, interfaceClass), environment);
-        this.group(reference.group());
+        if (StringUtils.isEmpty(reference.group())){
+            //进行method和event处理
+            if (reference.method() > 0 && reference.event() > 0){
+                this.group(reference.method() + "." + reference.event());
+            } else {
+                this.group(reference.group());
+            }
+        } else {
+            this.group(reference.group());
+        }
         this.version(reference.version());
     }
 
