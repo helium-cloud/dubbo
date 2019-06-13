@@ -20,7 +20,6 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.config.spring.ReferenceBean;
 import org.apache.dubbo.config.spring.ServiceBean;
-
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
@@ -48,6 +47,10 @@ public class ServiceBeanNameBuilder {
 
     private String group;
 
+    protected byte method;
+
+    protected int event;
+
     private ServiceBeanNameBuilder(String interfaceClassName, Environment environment) {
         this.interfaceClassName = interfaceClassName;
         this.environment = environment;
@@ -59,31 +62,18 @@ public class ServiceBeanNameBuilder {
 
     private ServiceBeanNameBuilder(Service service, Class<?> interfaceClass, Environment environment) {
         this(resolveInterfaceName(service, interfaceClass), environment);
-        if (StringUtils.isEmpty(service.group())){
-            //进行method和event处理
-            if (service.method() > 0 && service.event() > 0){
-                this.group(service.method() + "." + service.event());
-            } else {
-                this.group(service.group());
-            }
-        } else {
-            this.group(service.group());
-        }
+        this.method(service.method());
+        this.event(service.event());
+        this.group(service.group());
         this.version(service.version());
     }
 
     private ServiceBeanNameBuilder(Reference reference, Class<?> interfaceClass, Environment environment) {
         this(resolveInterfaceName(reference, interfaceClass), environment);
-        if (StringUtils.isEmpty(reference.group())){
-            //进行method和event处理
-            if (reference.method() > 0 && reference.event() > 0){
-                this.group(reference.method() + "." + reference.event());
-            } else {
-                this.group(reference.group());
-            }
-        } else {
-            this.group(reference.group());
-        }
+
+        this.method(reference.method());
+        this.event(reference.event());
+        this.group(reference.group());
         this.version(reference.version());
     }
 
@@ -115,6 +105,16 @@ public class ServiceBeanNameBuilder {
         return this;
     }
 
+    public ServiceBeanNameBuilder method(byte method) {
+        this.method = method;
+        return this;
+    }
+
+    public ServiceBeanNameBuilder event(int event) {
+        this.event = event;
+        return this;
+    }
+
     public String build() {
         StringBuilder beanNameBuilder = new StringBuilder("ServiceBean").append(SEPARATOR);
         // Required
@@ -122,6 +122,11 @@ public class ServiceBeanNameBuilder {
         // Optional
         append(beanNameBuilder, version);
         append(beanNameBuilder, group);
+
+        if (method > 0 && event > 0){
+            append(beanNameBuilder, String.valueOf(method));
+            append(beanNameBuilder, String.valueOf(event));
+        }
         // Build and remove last ":"
         String rawBeanName = beanNameBuilder.substring(0, beanNameBuilder.length() - 1);
         // Resolve placeholders

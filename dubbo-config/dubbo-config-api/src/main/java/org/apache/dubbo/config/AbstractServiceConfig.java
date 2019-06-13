@@ -116,6 +116,10 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
      */
     private String serialization;
 
+    protected byte method;
+
+    protected int event;
+
     public String getVersion() {
         return version;
     }
@@ -291,5 +295,21 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
 
     public void setSerialization(String serialization) {
         this.serialization = serialization;
+    }
+
+    public byte getMethod() {
+        return method;
+    }
+
+    public void setMethod(byte method) {
+        this.method = method;
+    }
+
+    public int getEvent() {
+        return event;
+    }
+
+    public void setEvent(int event) {
+        this.event = event;
     }
 }
