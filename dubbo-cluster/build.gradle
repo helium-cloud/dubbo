@@ -5,7 +5,7 @@
 dependencies {
     compile project(':dubbo-rpc:dubbo-rpc-api')
     compile project(':dubbo-configcenter:dubbo-configcenter-api')
-    compile 'org.yaml:snakeyaml:1.20'
+    compile group:'org.yaml', name:'snakeyaml', version: yaml_version
     testCompile 'org.apache.curator:curator-framework:4.0.1'
     testCompile 'org.apache.zookeeper:zookeeper:3.4.13'
 }
