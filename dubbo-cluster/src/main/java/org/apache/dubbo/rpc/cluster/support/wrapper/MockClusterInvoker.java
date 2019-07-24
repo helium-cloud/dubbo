@@ -166,4 +166,8 @@ public class MockClusterInvoker<T> implements Invoker<T> {
     public String toString() {
         return "invoker :" + this.invoker + ",directory: " + this.directory;
     }
+
+    public Directory<T> getDirectory() {
+        return directory;
+    }
 }

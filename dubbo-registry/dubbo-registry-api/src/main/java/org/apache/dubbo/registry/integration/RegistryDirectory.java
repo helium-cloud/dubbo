@@ -738,4 +738,7 @@ public class RegistryDirectory<T> extends AbstractDirectory<T> implements Notify
         }
     }
 
+    public Set<URL> getCachedInvokerUrls() {
+        return cachedInvokerUrls;
+    }
 }

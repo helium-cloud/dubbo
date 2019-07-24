@@ -618,7 +618,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
     }
 
     // just for test
-    Invoker<?> getInvoker() {
+    public Invoker<?> getInvoker() {
         return invoker;
     }
 

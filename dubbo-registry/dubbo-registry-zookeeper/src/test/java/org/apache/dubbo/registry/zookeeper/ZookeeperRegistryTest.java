@@ -56,7 +56,7 @@ public class ZookeeperRegistryTest {
     public void setUp() throws Exception {
         int zkServerPort = zkPort;
         this.zkServer = new TestingServer(zkServerPort, true);
-        this.registryUrl = URL.valueOf("zookeeper://localhost:" + zkServerPort);
+        this.registryUrl = URL.valueOf("zookeeper://10.10.220.121:" + zkServerPort);
 
         zookeeperRegistryFactory = new ZookeeperRegistryFactory();
         zookeeperRegistryFactory.setZookeeperTransporter(new CuratorZookeeperTransporter());
@@ -116,7 +116,7 @@ public class ZookeeperRegistryTest {
 
     @Test
     public void testLookup() {
-        List<URL> lookup = zookeeperRegistry.lookup(serviceUrl);
+        List<URL> lookup = zookeeperRegistry.lookup(URL.valueOf("ACP/org.helium.cloud.cincloud.api.CinService:1.0.0"));
         assertThat(lookup.size(), is(0));
 
         zookeeperRegistry.register(serviceUrl);

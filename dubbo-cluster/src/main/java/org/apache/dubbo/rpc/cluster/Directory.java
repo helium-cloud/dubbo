@@ -17,11 +17,14 @@
 package org.apache.dubbo.rpc.cluster;
 
 import org.apache.dubbo.common.Node;
+import org.apache.dubbo.common.URL;
 import org.apache.dubbo.rpc.Invocation;
 import org.apache.dubbo.rpc.Invoker;
 import org.apache.dubbo.rpc.RpcException;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Directory. (SPI, Prototype, ThreadSafe)
@@ -45,5 +48,8 @@ public interface Directory<T> extends Node {
      * @return invokers
      */
     List<Invoker<T>> list(Invocation invocation) throws RpcException;
+
+
+    default Set<URL> getCachedInvokerUrls(){return new HashSet<>(); };
 
 }
