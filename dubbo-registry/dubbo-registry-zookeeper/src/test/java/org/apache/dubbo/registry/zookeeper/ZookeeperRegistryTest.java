@@ -43,7 +43,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 
 public class ZookeeperRegistryTest {
-    private int zkPort = 7998;
     private TestingServer zkServer;
     private ZookeeperRegistry zookeeperRegistry;
     private String service = "org.apache.dubbo.test.injvmServie";
@@ -54,10 +53,11 @@ public class ZookeeperRegistryTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        int zkServerPort = zkPort;
+        int zkServerPort = NetUtils.getAvailablePort();
         this.zkServer = new TestingServer(zkServerPort, true);
-        this.registryUrl = URL.valueOf("zookeeper://10.10.220.121:" + zkServerPort);
+        this.zkServer.start();
 
+        this.registryUrl = URL.valueOf("zookeeper://localhost:" + zkServerPort);
         zookeeperRegistryFactory = new ZookeeperRegistryFactory();
         zookeeperRegistryFactory.setZookeeperTransporter(new CuratorZookeeperTransporter());
         this.zookeeperRegistry = (ZookeeperRegistry) zookeeperRegistryFactory.createRegistry(registryUrl);
