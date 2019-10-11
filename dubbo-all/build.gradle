@@ -22,7 +22,7 @@ dependencies {
     compile project(':dubbo-rpc:dubbo-rpc-injvm')
     compile project(':dubbo-rpc:dubbo-rpc-rmi')
     compile project(':dubbo-rpc:dubbo-rpc-hessian')
-    compile project(':dubbo-rpc:dubbo-rpc-http')
+//    compile project(':dubbo-rpc:dubbo-rpc-http')
     compile project(':dubbo-rpc:dubbo-rpc-webservice')
     compile project(':dubbo-rpc:dubbo-rpc-thrift')
     compile project(':dubbo-rpc:dubbo-rpc-memcached')
