@@ -8,7 +8,7 @@ dependencies {
     compile project(':dubbo-registry:dubbo-registry-multicast')
     compile project(':dubbo-remoting:dubbo-remoting-netty4')
     compile project(':dubbo-serialization:dubbo-serialization-hessian2')
-    compile project(':dubbo-rpc:dubbo-rpc-helium')
+//    compile project(':dubbo-rpc:dubbo-rpc-helium')
 //    compile project(':dubbo-rpc:dubbo-rpc-dubbo')
 
     compile project(':dubbo-configcenter:dubbo-configcenter-zookeeper')
