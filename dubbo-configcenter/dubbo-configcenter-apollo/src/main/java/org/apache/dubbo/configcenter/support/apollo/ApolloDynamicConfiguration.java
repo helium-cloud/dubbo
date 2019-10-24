@@ -48,6 +48,7 @@ import static org.apache.dubbo.common.constants.CommonConstants.CHECK_KEY;
 import static org.apache.dubbo.common.constants.CommonConstants.CLUSTER_KEY;
 import static org.apache.dubbo.common.constants.CommonConstants.COMMA_SPLIT_PATTERN;
 import static org.apache.dubbo.common.constants.CommonConstants.CONFIG_NAMESPACE_KEY;
+import static org.apache.dubbo.common.constants.CommonConstants.GROUP_KEY;
 
 /**
  * Apollo implementation, https://github.com/ctripcorp/apollo
@@ -85,8 +86,11 @@ public class ApolloDynamicConfiguration implements DynamicConfiguration {
             System.setProperty(APOLLO_APP_KEY, configAppId);
         }
 
-        dubboConfig = ConfigService.getConfig(url.getParameter(CONFIG_NAMESPACE_KEY, DEFAULT_GROUP));
-        dubboConfigFile = ConfigService.getConfigFile(url.getParameter(CONFIG_NAMESPACE_KEY, DEFAULT_GROUP), ConfigFileFormat.Properties);
+        String namespace = url.getParameter(CONFIG_NAMESPACE_KEY, DEFAULT_GROUP);
+        String apolloNamespace = StringUtils.isEmpty(namespace) ? url.getParameter(GROUP_KEY, DEFAULT_GROUP) : namespace;
+        dubboConfig = ConfigService.getConfig(apolloNamespace);
+        dubboConfigFile = ConfigService.getConfigFile(apolloNamespace, ConfigFileFormat.Properties);
+
         // Decide to fail or to continue when failed to connect to remote server.
         boolean check = url.getParameter(CHECK_KEY, true);
         if (dubboConfig.getSourceType() != ConfigSourceType.REMOTE) {
@@ -152,16 +156,9 @@ public class ApolloDynamicConfiguration implements DynamicConfiguration {
 
     @Override
     public String getProperties(String key, String group, long timeout) throws IllegalStateException {
-        if(StringUtils.isEmpty(group)) {
-            return dubboConfigFile.getContent();
-        }
-        if (group.equals(url.getParameter(APPLICATION_KEY))) {
-            return ConfigService.getConfigFile(APOLLO_APPLICATION_KEY, ConfigFileFormat.Properties).getContent();
-        }
-
-        ConfigFile configFile = ConfigService.getConfigFile(group, ConfigFileFormat.Properties);
+        ConfigFile configFile = ConfigService.getConfigFile(key, ConfigFileFormat.Properties);
         if (configFile == null) {
-            throw new IllegalStateException("There is no namespace named " + group + " in Apollo.");
+            throw new IllegalStateException("There is no namespace named " + key + " in Apollo.");
         }
         return configFile.getContent();
     }

@@ -125,7 +125,7 @@
         <arguments />
         <checkstyle.skip>true</checkstyle.skip>
         <rat.skip>true</rat.skip>
-        <revision>2.7.4-SNAPSHOT</revision>
+        <revision>2.7.5-SNAPSHOT</revision>
     </properties>
 
     <modules>
@@ -532,6 +532,7 @@
                                 <exclude>**/org/apache/dubbo/common/timer/HashedWheelTimer.java</exclude>
                                 <!-- exclude the edazdarevic files -->
                                 <exclude>**/org/apache/dubbo/common/utils/CIDRUtils.java</exclude>
+                                <exclude>.github/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>
