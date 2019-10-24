@@ -244,7 +244,7 @@ public @interface Reference {
     String consumer() default "";
 
     /**
-     * Monitor spring bean name
+     * Monitor associated name
      */
     String monitor() default "";
 
@@ -280,15 +280,4 @@ public @interface Reference {
      * @since 2.7.3
      */
     String id() default "";
-    /**
-     * method
-     * @return
-     */
-    byte method() default 0;
-
-    /**
-     * event
-     * @return
-     */
-    int event() default 0;
 }

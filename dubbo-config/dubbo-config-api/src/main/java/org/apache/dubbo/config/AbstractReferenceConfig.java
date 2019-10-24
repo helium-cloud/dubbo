@@ -87,10 +87,6 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
      */
     protected String group;
 
-    protected byte method;
-
-    protected int event;
-
     public Boolean isCheck() {
         return check;
     }
@@ -235,21 +231,5 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
     public void setGroup(String group) {
         checkKey(GROUP_KEY, group);
         this.group = group;
-    }
-
-    public byte getMethod() {
-        return method;
-    }
-
-    public void setMethod(byte method) {
-        this.method = method;
-    }
-
-    public int getEvent() {
-        return event;
-    }
-
-    public void setEvent(int event) {
-        this.event = event;
     }
 }

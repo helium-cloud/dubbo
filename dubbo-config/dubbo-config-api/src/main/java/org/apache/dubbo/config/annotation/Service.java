@@ -277,16 +277,4 @@ public @interface Service {
      * @return
      */
     Method[] methods() default {};
-
-    /**
-     * method
-     * @return
-     */
-    byte method() default 0;
-
-    /**
-     * event
-     * @return
-     */
-    int event() default 0;
 }
